@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="sunny" type="Boolean"/>
+        <variable name="icon" type="android.graphics.drawable.Drawable"/>
+        <variable name="time" type="String"/>
+        <variable name="temperature" type="String"/>
+        <variable name="windSpeed" type="String"/>
+        <variable name="windDirection" type="String"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_weather"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{sunny ? @drawable/weather_sunny : @drawable/weather_rainy}"
+            android:layout_marginBottom="6dp">
+
+        <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{icon}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:src="@drawable/ic_baseline_wb_sunny_24px"/>
+
+        <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@{time}"
+                app:layout_constraintStart_toEndOf="@id/iv_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_temperature"
+                android:layout_marginStart="8dp"
+                tools:text="2019/01/23 12:00:00"
+        />
+
+        <TextView
+                android:id="@+id/tv_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{temperature}"
+                tools:text="23.7℃"
+                app:layout_constraintTop_toBottomOf="@id/tv_time"
+                app:layout_constraintStart_toStartOf="@id/tv_time"
+                app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+        <TextView
+                android:id="@+id/tv_wind_speed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="風速"
+                app:layout_constraintTop_toBottomOf="@id/tv_time"
+                app:layout_constraintStart_toEndOf="@id/tv_temperature"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
+        />
+
+        <TextView
+                android:id="@+id/tv_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{windSpeed}"
+                tools:text="12.3(m/s)"
+                app:layout_constraintStart_toEndOf="@id/tv_wind_speed_text"
+                app:layout_constraintTop_toTopOf="@id/tv_wind_speed_text"
+                app:layout_constraintBottom_toBottomOf="@id/tv_wind_speed_text"
+                android:layout_marginStart="8dp"
+        />
+
+        <TextView
+                android:id="@+id/tv_direction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{windDirection}"
+                tools:text="北北西"
+                app:layout_constraintTop_toTopOf="@id/tv_wind_speed"
+                app:layout_constraintBottom_toBottomOf="@id/tv_wind_speed"
+                app:layout_constraintStart_toEndOf="@id/tv_wind_speed"
+                android:layout_marginStart="8dp"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

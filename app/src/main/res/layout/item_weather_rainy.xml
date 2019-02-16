@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="icon" type="android.graphics.drawable.Drawable"/>
+        <variable name="time" type="String"/>
+        <variable name="temperature" type="String"/>
+        <variable name="windSpeed" type="String"/>
+        <variable name="windDirection" type="String"/>
+        <variable name="precipitation" type="String"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp">
+
+        <include
+                layout="@layout/item_weather"
+                app:icon="@{icon}"
+                app:time="@{time}"
+                app:temperature="@{temperature}"
+                app:windSpeed="@{windSpeed}"
+                app:windDirection="@{windDirection}"
+        />
+
+        <TextView
+                android:id="@+id/tv_precipitation_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="降水量"
+                app:layout_constraintEnd_toStartOf="@id/tv_precipitation"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="8dp"
+        />
+
+        <TextView
+                android:id="@+id/tv_precipitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{precipitation}"
+                tools:text="10.0(m/s)"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
